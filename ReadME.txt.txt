@@ -2,7 +2,6 @@ The is the readme text file for ISAT Deepfake Idnetification alongside Federated
 Student:
 Fergan van Jaarsveld - 4164150@myuwc.ac.za
 
-########################################################
 Setting up the dataset for the deepfake identification:
 The word document explains this process with images and greater detail, but essentially:
 
@@ -11,15 +10,15 @@ Please ensure you have correctly input/locate the appropriate directory where th
 Using Google Colab:
 
 Upload to session storage
-Create a new folder named: Face_Recognition
-Navigate in the directory where the dataset is located
-Navigate to "Olivetti Dataset"
-Upload "olvetti_faces.npy" and "olivetti_faces_target.npy"
-Move the two (2) .npy files into the Face_Recognition folder
+* Create a new folder named: Face_Recognition
+* Navigate in the directory where the dataset is located
+* Navigate to "Olivetti Dataset"
+* Upload "olvetti_faces.npy" and "olivetti_faces_target.npy"
+* Move the two (2) .npy files into the Face_Recognition folder
 
 Libraries to import/install: 
-	pip install numpy
-	pip install pandas
+* pip install numpy
+* pip install pandas
 
 Make sure you have correctly installed the imports
 
@@ -31,38 +30,34 @@ Install using cell code
 For graphical visualization: 
 
 Libraries to import/install:
-	pip install matplotlib
-	pip install seaborn
-	pip install mglearn
+* pip install matplotlib
+* pip install seaborn
+* pip install mglearn
 
 For the architectural models:
-	from sklearn.linear_model import LogisticRegression
-	from sklearn.dicriminant_analysis import LinearDiscriminantAnalysis
-	from sklearn.naive_bayes import GaussianNB
+* from sklearn.linear_model import LogisticRegression
+* from sklearn.dicriminant_analysis import LinearDiscriminantAnalysis
+* from sklearn.naive_bayes import GaussianNB
 
 Federated Learning environment setup:
 
 Libraries to import/install:
-	import numpy as np
-	import random
-	import cv2
-	import os
-	from imutils import paths
-	from sklearn.model_selection import train_test_split
-	from sklearn.preprocessing import LabelBinarizer
-	from sklearn.utils import shuffle
-	from sklearn.metrics import accuracy_score
+* import numpy as np
+* import random
+* import cv2
+* import os
+* from imutils import paths
+* from sklearn.model_selection import train_test_split
+* from sklearn.preprocessing import LabelBinarizer
+* from sklearn.utils import shuffle
+* from sklearn.metrics import accuracy_score
 
-	import tensorflow as tf
-	from tensorflow.keras.models import Sequential
-	from tensorflow.keras.layers import Conv2D
-	from tensorflow.keras.layers import MaxPooling2D
-	from tensorflow.keras.layers import Activation	
-	from tensorflow.keras.layers import Flatten
-	from tensorflow.keras.layers import Dense
-	from tensorflow.keras.optimizers import SGD
-	from tensorflow.keras import backend as K
-
-	
-
-	
+* import tensorflow as tf
+* from tensorflow.keras.models import Sequential
+* from tensorflow.keras.layers import Conv2D
+* from tensorflow.keras.layers import MaxPooling2D
+* from tensorflow.keras.layers import Activation	
+* from tensorflow.keras.layers import Flatten
+* from tensorflow.keras.layers import Dense
+* from tensorflow.keras.optimizers import SGD
+* from tensorflow.keras import backend as K
