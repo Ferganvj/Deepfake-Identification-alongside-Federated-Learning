@@ -1,0 +1,13 @@
+# Cross-validation of LDA and LR and NB for best performance
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import KFold
+
+pca = PCA(n_components=n_components, whiten=True)
+pca.fit(X)
+X_pca = pca.transform(X)
+
+for name, model in models:
+    kfold=KFold(n_splits=4, shuffle=True, random_state=0)   # 4 Splits (can change)
+    
+    cv_scores = cross_val_score(model, X_pca, target, cv=kfold)
+    print("{} mean cross validations score:{:.2f}".format(name, cv_scores.mean()))

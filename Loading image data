@@ -1,0 +1,11 @@
+# Loading the image data
+data = np.load("/content/Face_Recognition/olivetti_faces.npy")
+target = np.load("/content/Face_Recognition/olivetti_faces_target.npy")
+
+# Verifying the abovementioned loaded data
+print("There are {} images in the dataset".format(len(data)))
+print("There are {} unique targets in the dataset".format(len(np.unique(target))))
+print("The size of each image is: {}x{}".format(data.shape[1],data.shape[2]))
+
+# Number of people faces in the dataset (40)
+print("Unique Target Number:",np.unique(target))

@@ -1,0 +1,49 @@
+# Implementing FedAvg
+
+''' Claculating the clients local training data with overall training data held
+    by all of the clients.
+    Obtain client batch size to calculate number of data points.
+    Calculate the scaling factor as a fraction specified in line 18
+'''
+
+def weight_scalling_factor(clients_trn_data, client_name):
+    client_names = list(clients_trn_data.keys())
+
+    # Get the batch size
+    bs = list(clients_trn_data[client_name])[0][0].shape[0]
+
+    # First calculate the total training data points across clients
+    global_count = sum([tf.data.experimental.cardinality(clients_trn_data[client_name]).numpy() for client_name in client_names])*bs
+
+    # Get the total number of data points held by a client
+    local_count = tf.data.experimental.cardinality(clients_trn_data[client_name]).numpy()*bs
+    return local_count/global_count
+
+def scale_model_weights(weight, scalar):
+    '''function for scaling a models weights based on value of ther scaling factor above'''
+    weight_final = []
+    steps = len(weight)
+    for i in range(steps):
+        weight_final.append(scalar * weight[i])
+    return weight_final
+
+def sum_scaled_weights(scaled_weight_list):
+    '''Return the sum of the listed scaled weights. The is equivalent to scaled avg of the weights'''
+    avg_grad = list()
+
+    #Get the average gradient accross all client gradients
+    for grad_list_tuple in zip(*scaled_weight_list):
+        layer_mean = tf.math.reduce_sum(grad_list_tuple, axis=1)
+        avg_grad.append(layer_mean)
+        
+    return avg_grad
+
+def test_model(X_test, Y_test,  model, comm_round):
+    cce = tf.keras.losses.CategoricalCrossentropy(from_logits=True)
+
+    Logits = model.predict(X_test, batch_size=100)
+    logits = model.predict(X_test)
+    loss = cce(Y_test, logits)
+    acc = accuracy_score(tf.argmax(logits), tf.argmax(Y_test))
+    print('comm_round: {} | global_acc: {:.3%} | global_loss: {}'.format(comm_round, acc, loss))
+    return acc, loss

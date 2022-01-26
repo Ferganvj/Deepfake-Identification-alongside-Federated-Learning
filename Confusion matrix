@@ -1,0 +1,4 @@
+# Heatmap of a confusion matrix of classification
+import seaborn as sns
+plt.figure(1, figsize = (12,8))
+sns.heatmap(metrics.confusion_matrix(y_test, y_pred))

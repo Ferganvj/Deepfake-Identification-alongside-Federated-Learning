@@ -1,0 +1,4 @@
+# Number of samples for each class
+y_frame = pd.DataFrame()
+y_frame['Subject IDs'] = y_train
+y_frame.groupby(['Subject IDs']).size().plot.bar(figsize = (15,8),title = "Number of Samples for Each Classes")

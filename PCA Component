@@ -1,0 +1,12 @@
+'''
+PCA / principle component analysis enables the data to be presented
+in a smaller size transforming the new components and size to be reduced
+selecting most important components
+'''
+
+from sklearn.decomposition import PCA
+
+# 2 components
+pca = PCA(n_components=2)
+pca.fit(X)
+X_pca = pca.transform(X)

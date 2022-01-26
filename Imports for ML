@@ -1,0 +1,21 @@
+import numpy as np    # linear algebra
+import pandas as pd   # data processing
+
+# Machine Learning + Models
+from sklearn.linear_model import LogisticRegression
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.naive_bayes import GaussianNB
+
+from sklearn.model_selection import train_test_split
+from sklearn.decomposition import PCA
+from sklearn import metrics
+from sklearn.metrics import (precision_recall_curve, PrecisionRecallDisplay, precision_recall_fscore_support)
+
+# Graph Visualization
+import matplotlib.pyplot as plt
+
+# System
+import os
+mydir = r'/content/Face_Recognition'
+myfile = 'Face_Recognition'
+Face_Recognition_path = os.path.join(mydir, myfile)

@@ -1,0 +1,15 @@
+def show_40_distinct_people(images, unique_ids):
+    #Creating 4X10 subplots in  18x9 figure size
+    fig, axarr = plt.subplots(nrows=4, ncols=10, figsize=(18, 9))
+    
+    #For easy iteration flattened 4X10 subplots matrix to 40 array
+    #xarr=axarr.flatten()
+    
+    # Iterating over user ids
+    for unique_id in unique_ids:
+        image_index=unique_id*10
+        axarr[unique_id].imshow(images[image_index], cmap='gray')
+        axarr[unique_id].set_xticks([])
+        axarr[unique_id].set_yticks([])
+        axarr[unique_id].set_title("face id:{}".format(unique_id))
+    plt.suptitle("There are 40 distinct people in the dataset")

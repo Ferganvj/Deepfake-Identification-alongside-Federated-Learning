@@ -1,0 +1,20 @@
+number_of_people = 10 
+index_range = number_of_people*10 
+'''
+Changing the number of people [10] thus changes the graph illustration
+It is ideal to ensure that the index_range == number_of_people
+'''
+fig = plt.figure(figsize = (10,8))
+ax = fig.add_subplot(1,1,1)
+scatter=ax.scatter(X_pca[:index_range,0],
+            X_pca[:index_range,1], 
+            c=target[:index_range],
+            s=10,
+           cmap=plt.get_cmap('jet', number_of_people)
+          )
+
+ax.set_xlabel("First Principle Component")
+ax.set_ylabel("Second Principle Component")
+ax.set_title("PCA projection of {} people".format(number_of_people))
+
+fig.colorbar(scatter)

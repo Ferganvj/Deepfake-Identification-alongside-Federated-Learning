@@ -1,0 +1,23 @@
+# Result of classification
+X_train_pca = pca.transform(X_train)
+X_test_pca = pca.transform(X_test)
+
+''' Accuracy scores of models with PCA incorporated '''
+
+# Prints accuracy score of LR
+clf = LogisticRegression()
+clf.fit(X_train_pca, y_train)
+y_pred = clf.predict(X_test_pca)
+print("Accuracy score of Logistic Regression: {:.2f}".format(metrics.accuracy_score(y_test, y_pred)))
+
+# Prints accuracy score of LDA
+clf = LinearDiscriminantAnalysis()
+clf.fit(X_train_pca, y_train)
+y_pred = clf.predict(X_test_pca)
+print("Accuracy score of Linear Discriminant Analysis: {:.2f}".format(metrics.accuracy_score(y_test, y_pred)))    # inserted score to x by 100
+
+# Prints accuracy score of NB
+clf = GaussianNB()
+clf.fit(X_train_pca, y_train)
+y_pred = clf.predict(X_test_pca)
+print("Accuracy score of Gaussian NB: {:.2f}".format(metrics.accuracy_score(y_test, y_pred)))

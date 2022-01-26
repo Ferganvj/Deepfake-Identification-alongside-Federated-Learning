@@ -1,0 +1,9 @@
+# Declaring the Loss function, Metric and Optimizer to compile models
+learning_rate = 0.01 
+comms_round = 100
+loss = 'categorical_crossentropy'
+metrics = ['accuracy']
+optimizer = SGD(learning_rate=learning_rate, 
+                decay = learning_rate / comms_round,   # Comms_round is the number of local epochs
+                momentum = 0.9
+               )       

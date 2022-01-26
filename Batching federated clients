@@ -1,0 +1,18 @@
+''' Processing and batching the federated clients' and testing data
+    into TF dataset then batching them
+'''
+
+def batch_data(data_shard, bs=32):
+
+    ''' Takes in a clients data shard and create a tensorflow dataset object off it
+    args:
+        shard: a data, label constituting a client's data shard
+        bs:batch size
+    return:
+        tfds object
+    '''
+
+    # Seperating shard into data and labels lists
+    data, label = zip(*data_shard)
+    dataset = tf.data.Dataset.from_tensor_slices((list(data), list(label)))
+    return dataset.shuffle(len(label)).batch(bs)

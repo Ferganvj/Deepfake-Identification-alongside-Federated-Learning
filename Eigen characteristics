@@ -1,0 +1,17 @@
+'''
+eigen / characteristics
+Combining PCA components to show most characterized faces
+'''
+number_of_eigenfaces = len(pca.components_)
+eigen_faces = pca.components_.reshape((number_of_eigenfaces, data.shape[1], data.shape[2]))
+
+cols = 10
+rows = int(number_of_eigenfaces/cols)
+fig, axarr = plt.subplots(nrows = rows, ncols=cols, figsize = (15,15))
+axarr = axarr.flatten()
+for i in range(number_of_eigenfaces):
+    axarr[i].imshow(eigen_faces[i],cmap = "gray")
+    axarr[i].set_xticks([])
+    axarr[i].set_yticks([])
+    axarr[i].set_title("eigen id:{}".format(i))
+plt.suptitle("All Eigen Faces".format(10*"=", 10*"="))

@@ -1,0 +1,3 @@
+!pip install mglearn
+import mglearn
+mglearn.plots.plot_pca_illustration()

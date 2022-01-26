@@ -1,0 +1,59 @@
+# FL Training 
+# Initialize global m
+from tqdm.notebook import tqdm
+
+smlp_global = SimpleMLP()
+global_model = smlp_global.build(4096, 1)   
+        
+# Commence global training loop
+for comm_round in range(comms_round):
+            
+    # Get the global model's weights - will serve as the initial weights for all local models
+    global_weights = global_model.get_weights()
+    
+    # Initial list to collect local model weights after scalling
+    scaled_local_weight_list = list()
+
+    ''' Randomizing client data using keys to ensure randomness
+        followed by interating through client training'''
+    client_names = list(clients_batched.keys())
+    random.shuffle(client_names)
+    
+    # Loop through each client and create new local model
+    for client in tqdm(client_names):
+        smlp_local = SimpleMLP()
+        local_model = smlp_local.build(4096, 1)
+        local_model.compile(loss = loss, 
+                      optimizer = optimizer, 
+                      metrics = metrics)
+        
+        ''' New model object is created for each client which is then compiled
+            and initialisation weights to the current parameters of the global
+            model.
+            Local model (client) is trained for 1 epoch followed by the new
+            weights that were scaled and appeneded to scaled_local_weight_list
+        '''
+        
+        # Set local model weight to the weight of the global model
+        local_model.set_weights(global_weights)
+        
+        # Fit local model with client's data
+        local_model.fit(clients_batched[client], epochs=1, batch_size=2)   # epochs orignally 1
+        
+        # Scale the model weights and add to list
+        scaling_factor = weight_scalling_factor(clients_batched, client)
+        scaled_weights = scale_model_weights(local_model.get_weights(), scaling_factor)
+        scaled_local_weight_list.append(scaled_weights) # Local training
+        
+        # Clear session to free memory after each communication round
+        K.clear_session()
+        
+    # To get the average over all the local model, we simply take the sum of the scaled weights
+    average_weights = sum_scaled_weights(scaled_local_weight_list)
+
+    # Update global model 
+    global_model.set_weights(average_weights)
+
+    # Test global model and print out metrics after each communications round
+    for(X_test, Y_test) in tqdm(test_batched):
+        global_acc, global_loss = test_model(X_test, Y_test, global_model, comm_round)

@@ -1,0 +1,15 @@
+models = []
+models.append(('LDA', LinearDiscriminantAnalysis()))
+models.append(("LR",LogisticRegression()))
+models.append(("NB",GaussianNB()))
+
+for name, model in models:
+    
+    clf = model
+
+    clf.fit(X_train_pca, y_train)
+
+    y_pred = clf.predict(X_test_pca)
+    print(10*"=","{} Result".format(name).upper(),10*"=")
+    print("Accuracy score:{:0.2f}".format(metrics.accuracy_score(y_test, y_pred)))
+    print()

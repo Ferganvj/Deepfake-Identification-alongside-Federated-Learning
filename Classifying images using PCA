@@ -1,0 +1,6 @@
+# From about 90 PCA components it represents the same data
+n_components = 90
+
+# Classifying images using PCA components
+pca = PCA(copy=True, iterated_power='auto', n_components = 90, random_state=None, svd_solver='auto', tol=0.0, whiten=True)
+pca.fit(X_train)

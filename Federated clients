@@ -1,0 +1,32 @@
+# Federated Clients 
+def create_clients(image_list, label_list, num_clients=10, initial='clients'):
+  
+    ''' return: a dictionary with keys clients' names and value as 
+                data shards - tuple of images and label lists.
+        args: 
+            image_list: a list of numpy arrays of training images
+            num_client: number of federated members (clients)
+            initials: the clients'name prefix, e.g, clients_1
+
+        Training set is shared into 10 shards, 1 per client (10)
+    '''
+
+    # Create a list for client names
+    client_names = ['{}_{}'.format(initial, i+1) for i in range(num_clients)]
+
+    # Randomize the data
+    data = list(zip(image_list, label_list))
+    random.shuffle(data)
+
+    # Shard data and place at each client
+    size = len(data)//num_clients
+    shards = [data[i:i + size] for i in range(0, size*num_clients, size)]
+
+    # Number of clients must equal number of shards
+    assert(len(shards) == len(client_names))
+
+    # Dictionary containing each client name as a key
+    return {client_names[i] : shards[i] for i in range(len(client_names))} 
+    
+# Creating the federated clients
+clients = create_clients(X_train, y_train, num_clients=10, initial='client')

@@ -1,0 +1,11 @@
+# Finding the optimum number of principle components
+pca = PCA()
+pca.fit(X)
+
+plt.figure(1, figsize=(12,8))
+
+plt.plot(pca.explained_variance_, linewidth=2)
+ 
+plt.xlabel('Components')
+plt.ylabel('Explained Variaces')
+plt.show()

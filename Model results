@@ -1,0 +1,2 @@
+# Results obtained from LDA, LR, NB
+print(metrics.classification_report(y_test, y_pred))
