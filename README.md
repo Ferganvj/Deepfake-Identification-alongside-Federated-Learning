@@ -19,12 +19,12 @@ It is good practice to ensure and update all packages frequently.
 Please ensure you have correctly input/locate the appropriate directory where the dataset is located. By ensuring this it allows for the data to be loaded and manipluated.
 
 ## Using Google Colab:
-* ``` Upload to session storage ```
-* ``` Create a new folder named: Face_Recognition ```
-* ``` Navigate in the directory where the dataset is located ```
-* ``` Navigate to "Olivetti Dataset" ```
-* ``` Upload "olvetti_faces.npy" and "olivetti_faces_target.npy" ```
-* ``` Move the two (2) .npy files into the Face_Recognition folder ```
+- Upload to session storage
+- Create a new folder named: Face_Recognition
+- Navigate in the directory where the dataset is located
+- Navigate to "Olivetti Dataset"
+- Upload "olvetti_faces.npy" and "olivetti_faces_target.npy"
+- Move the two (2) .npy files into the Face_Recognition folder
 
 ## Ensure that the dataset is properly loaded by running the following code in the notebook:
 ```
@@ -45,9 +45,9 @@ print("There are {} unique targets in the dataset".format(len(np.unique(target))
 print("The size of each image is: {}x{}".format(data.shape[1],data.shape[2]))
 ```
 Preceeding the successful loading and verification of the dataset the following will be displayed:
-* ``` Number of images in the dataset ```
-* ``` Number of unique targets in the dataset ```
-* ``` The size of each image in the dataset ```
+- Number of images in the dataset
+- Number of unique targets in the dataset
+- The size of each image in the dataset ```
 
 ## Then to simply install other libs:
 In terminal to:
