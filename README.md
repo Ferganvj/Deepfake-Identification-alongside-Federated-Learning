@@ -118,7 +118,7 @@ from tensorflow.keras.optimizers import SGD
 from tensorflow.keras import backend as K
 ```
 
-## Conclusions
+## Contributions
 B.Sc (Hons) in Computer Science for University of Western Cape, Cape Town, 7535, South Africa.
 
 Honours project: ISAT project - Deepfake Identification alongside Federated Learning 
